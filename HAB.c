@@ -61,10 +61,7 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 			}
 		}
 
-printf("ここ");
 		set_data(login_user);
-printf("そこ");
-
 
 
 //家計簿メイン部分開始
@@ -125,6 +122,7 @@ printf("そこ");
 		int n;
 
 		fi=fopen("data.dat","r");
+		if(fi=='\0')return -1;
 		fscanf(fi,"%d",&user_sum);
 		if(user_sum==0)return -1;
 
@@ -142,6 +140,7 @@ printf("そこ");
 		int i;
 		char dummy[105];
 
+		if(fi=='\0')return -1;
 		fscanf(fi,"%d",&cate_sum);
 		if(cate_sum==0)return -1;
 
@@ -160,11 +159,14 @@ printf("そこ");
 		int i;
 		char dummy[105];
 
+		if(fi=='\0')return -1;
+
 	//save[]に格納
 		while(1){
 			fgets(dummy,100,fi);
+
 			if(feof(fi)!=0)return -1;
-			if(dummy[0]!='\n'){
+			if(dummy[0]!='\n'){printf("4");
 				dummy[strlen(dummy)-1]='\0';
 
 				if(strcmp(user,dummy)==0)break;
