@@ -37,13 +37,13 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 		printf("家計簿プログラムを起動しました.\n\n");
 
 		if(set_user()==-1){					//登録ユーザー0人
-			printf("アカウントが登録されていません,新規登録を行います.\n");
+			printf("アカウントが登録されていません,新規登録を行います.\n\n");
 			newuser();
 		}
 
 
 		if(set_cate()==-1){					//カテゴリデータ0
-			printf("カテゴリデータが登録されていません,新規登録を行います.\n");
+			printf("カテゴリデータが登録されていません,新規登録を行います.\n\n");
 			newcate();
 		}
 
@@ -52,7 +52,7 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 			printf("ログイン-->1 新規作成-->2");
 
 			if(check12()==1){
-				if(login()!=1)break;						//新規作成しなかったとき
+				if(login()==1)break;						//新規作成しなかったとき
 			}
 			else{
 				printf("アカウント新規作成を行います.\n");
@@ -61,9 +61,9 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 			}
 		}
 
-
+printf("ここ");
 		set_data(login_user);
-
+printf("そこ");
 
 
 
@@ -239,7 +239,7 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 					printf("英数字以外の文字が含まれています,アカウント名を再入力してください.\n");
 				}
 				else{					
-					if(usercheck(name)==0)
+					if(usercheck(name)==-1)
 						break;
 					else
 						printf("すでに存在するユーザ名です,再入力して下さい.\n");
@@ -274,10 +274,10 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 				if(checkyn==0)break;
 			}
 		}
-		printf("%sさんのアカウントを作成しました.",name);
-		user_sum++;
+		printf("%sさんのアカウントを作成しました.\n",name);
 		sprintf(account[user_sum].user,name);
 		sprintf(account[user_sum].pass,word);
+		user_sum++;
 	}
 
 
@@ -289,7 +289,7 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 		for(s=0;s<user_sum;s++){
 			if(strcmp(name,account[s].user)==0)return s;
 		}
-		return 0;
+		return -1;
 	}
 
 
@@ -298,16 +298,16 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 		int s,num;
 		char name[30],word[30];
 		
-		printf("登録されているアカウント\n");
+		printf("現在登録されているアカウント\n");
 		for(s=0;s<user_sum;s++)
 			printf("%d:%s\n",s+1,account[s].user);
 
-		printf("ユーザ名を入力して下さい.\n");
+		printf("ログインするユーザ名を入力して下さい.\n");
 
 		while(1){
 			scanf("%s",name);
 			num=usercheck(name);
-			if(num!=0)break;
+			if(num!=-1)break;
 			else{
 				printf("入力されたユーザは存在しません.\n");
 				printf("再入力-->1 新規作成-->2");
@@ -357,17 +357,16 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 
 
 
-		if(check12()==2)cate_sum=-1;
+		if(check12()==2)
+		printf("%dつ目のカテゴリを入力して下さい.\n",cate_sum+1);
+		printf("1つ以上カテゴリがある時に,入力に「end」と入力すると終了.\n");
 
 		while(1){
 			cate_sum++;
-			printf("%dつ目のカテゴリを入力して下さい.\n",cate_sum+1);
-			printf("1つ以上カテゴリがある時に,入力に「end」と入力すると終了.\n");
 			while(1){
 				scanf("%s",category[cate_sum]);				//再入力時、毎回初期化いるの？
 				if(strcmp(category[cate_sum],"end")==0 && cate_sum!=0){
 					category[cate_sum][0]='\0';
-					cate_sum--;
 					flag=3;
 					break;
 				}
@@ -382,8 +381,9 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 				else printf("%sはすでに存在するカテゴリです,再入力して下さい.\n");
 			}
 			if(flag==3)break;
+			printf("%dつ目のカテゴリを入力して下さい.\n",cate_sum+1);
 		}
-		printf("現在以下のカテゴリが登録されています.\n");
+		printf("\n現在以下のカテゴリが登録されています.\n");
 		for(i=0;i<cate_sum;i++)
 			printf("%d:%s\n",i+1,category[i]);
 	}
