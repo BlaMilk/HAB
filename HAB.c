@@ -80,12 +80,13 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date(),save_dat();
 //										モード分岐
 /******************************************************************/
 	void mode_select(){
-		int n,flag=0;
+		int i,n,flag=0;
 		int mode;
 
 		printf("1:データ入力\n");
-		printf("2:残高出力\n");
-		printf("3:データの検索\n");
+		printf("2:データ全出力\n");
+		printf("3:残高出力\n");
+		printf("4:データの検索\n");
 		printf("他:終了\n");
 		printf("モード選択 ==> ");
 		scanf("%d",&mode);
@@ -95,7 +96,18 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date(),save_dat();
 				Input();
 				data[data_sum++]=temp;
 			break;
-			case 2:	//残高出力
+
+			case 2:	//データ出力
+				for(i=0;i<data_sum;i++){
+					printf("%d :%d/%d/%d ",i+1,data[i].year,data[i].month,data[i].day);
+					printf("%s ",data[i].item);
+					printf("%d ",data[i].cate);
+					printf("%d ",data[i].value);
+					printf("%d\n",data[i].inout);
+				}
+			break;
+
+			case 3:	//残高出力
 				printf("残高を調べる開始日を入力して下さい.\n");
 				Input_date();
 				printf("その日から何日間を調べますか.\n");
@@ -105,7 +117,7 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date(),save_dat();
 
 			break;
 
-			case 3:	//データの検索
+			case 4:	//データの検索
 				search_and_edit();
 			break;
 
