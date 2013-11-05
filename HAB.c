@@ -27,7 +27,7 @@ int user_sum=0,cate_sum=0,save_sum=0,data_sum=0;
 FILE *fi,*fo;
 
 
-void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
+void mode_select(),newuser(),search_and_edit(),Input(),Input_date(),save_dat();
 
 
 
@@ -57,7 +57,6 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 			else{
 				printf("アカウント新規作成を行います.\n");
 				newuser();
-				break;
 			}
 		}
 
@@ -71,6 +70,7 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 			printf("続行-->1 終了-->2\n");
 			scanf("%d",&read);
 			if(read==2)break;
+			save_dat();
 		}
 	}
 
@@ -80,36 +80,37 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 //						モード分岐
 /********************************************/
 	void mode_select(){
-		int n;
+		int n,flag=0;
 		int mode;
 
-		while(1){
-			printf("1:データ入力\n");
-			printf("2:残高出力\n");
-			printf("3:データの検索\n");
-			printf("モード選択 ==> ");
-			scanf("%d",&mode);
+		printf("1:データ入力\n");
+		printf("2:残高出力\n");
+		printf("3:データの検索\n");
+		printf("他:終了\n");
+		printf("モード選択 ==> ");
+		scanf("%d",&mode);
 
-			switch(mode){
-				case 1:	//データ入力
-					Input();
-				break;
-				case 2:	//残高出力
-					printf("残高を調べる開始日を入力して下さい.\n");
-					Input_date();
-					printf("その日から何日間を調べますか.\n");
-					scanf("%d",&n);
-					out_sum(top(search(0,0)),serch_later(n,0));					
-				break;
+		switch(mode){
+			case 1:	//データ入力
+				Input();
+				data[data_sum++]=temp;
+			break;
+			case 2:	//残高出力
+				printf("残高を調べる開始日を入力して下さい.\n");
+				Input_date();
+				printf("その日から何日間を調べますか.\n");
+				scanf("%d",&n);
+				printf("%d年%d月%d日から%d日間のデータを検索します\n\n",temp.year,temp.month,temp.day,n);
+				out_sum(search(0,0),serch_later(n,0));
 
-			case 3:
-			//データの検索
-					search_and_edit();
-				break;
+			break;
 
-				default:
-				break;
-			}
+			case 3:	//データの検索
+				search_and_edit();
+			break;
+
+			default:
+			break;
 		}
 	}
 
@@ -205,7 +206,64 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 		return 0;
 	}
 
-	
+
+
+
+/********************************************/
+//						ファイル出力
+/********************************************/
+
+	void save_dat(){
+		int i;
+
+		fo=fopen("data.dat","w");
+
+//ユーザー部分
+		if(user_sum!=0){
+			fprintf(fo,"%d\n",user_sum);
+
+			for(i=0;i<user_sum;i++){
+				fprintf(fo,"%s ",account[i].user);
+				fprintf(fo,"%s\n",account[i].pass);
+			}
+
+			fprintf(fo,"\n**\n\n");
+		}
+
+//カテゴリ部分
+		if(cate_sum!=0){
+			fprintf(fo,"%d\n",cate_sum);
+
+			for(i=0;i<cate_sum;i++)
+				fprintf(fo,"%s\n",category[i]);
+
+			fprintf(fo,"\n**\n\n");
+		}
+
+//データ部分
+		if(login_user[0]!='\0'){
+			fprintf(fo,"%s\n",login_user);
+
+			fprintf(fo,"%d\n",data_sum);
+
+			for(i=0;i<data_sum;i++){
+				fprintf(fo,"%4d ",data[i].year);
+				fprintf(fo,"%2d ",data[i].month);
+				fprintf(fo,"%2d ",data[i].day);
+				fprintf(fo,"%20s ",data[i].item);
+				fprintf(fo,"%2d ",data[i].cate);
+				fprintf(fo,"%10ld ",data[i].value);
+				fprintf(fo,"%2d\n",data[i].inout);
+			}
+
+			fprintf(fo,"\n**\n\n");
+		}
+
+		for(i=0;i<save_sum;i++)
+			fprintf(fo,"%s",save[i]);
+
+		fclose(fo);
+	}
 
 /********************************************/
 //						ユーザー管理
@@ -220,19 +278,15 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 
 	//ユーザ名登録
 		printf("現在使用されているユーザー名は");
+		if(user_sum==0)
+			printf("ありません\n");
 
-		for(s=0;s<user_sum;s++){
-			if(user_sum==0){
-				printf("ありません\n");
-				break;
-			}
-			else
+		for(s=0;s<user_sum;s++)
 				printf("\n%d:%s",s+1,account[s].user);
-		}
 
 		while(1){
 			printf("希望のアカウント名を入力して下さい\n");
-			printf("全角英数字が使用可能\n");
+			printf("英数字が利用できます\n");
 
 			while(1){
 				scanf("%s",name);
@@ -252,7 +306,7 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 
 	//パスワード登録
 			printf("希望のパスワードを入力してください");
-			printf("半角英数字が使用可能\n");
+			printf("英数字が利用できます\n");
 
 			while(1){
 				scanf("%s",word);
@@ -261,7 +315,7 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 
 				printf("英数字以外の文字が含まれています,パスワードを再入力してください.\n");
 			}
-			printf("ユーザ名　　:%20s\n",name);
+			printf("ユーザ名　　:%-20s\n",name);
 			printf("パスワード名:");
 			for(s=0;s<strlen(word)/3;s++)	printf("%c",word[s]);
 			for(t=s;t<strlen(word);t++)	printf("*");
@@ -341,7 +395,7 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 
 /********************************************/
 //						カテゴリ管理
-/*******************************************/
+/********************************************/
 //カテゴリ追加
 	int newcate(){
 		int i,flag;
@@ -359,16 +413,15 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 
 
 
-		if(check12()==2)
+		if(check12()==2)cate_sum==0;
+
 		printf("%dつ目のカテゴリを入力して下さい.\n",cate_sum+1);
 		printf("1つ以上カテゴリがある時に,入力に「end」と入力すると終了.\n");
 
 		while(1){
-			cate_sum++;
 			while(1){
 				scanf("%s",category[cate_sum]);				//再入力時、毎回初期化いるの？
 				if(strcmp(category[cate_sum],"end")==0 && cate_sum!=0){
-					category[cate_sum][0]='\0';
 					flag=3;
 					break;
 				}
@@ -383,6 +436,7 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 				else printf("%sはすでに存在するカテゴリです,再入力して下さい.\n");
 			}
 			if(flag==3)break;
+			cate_sum++;
 			printf("%dつ目のカテゴリを入力して下さい.\n",cate_sum+1);
 		}
 		printf("\n現在以下のカテゴリが登録されています.\n");
@@ -407,7 +461,7 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 		while(1){
 			printf("カテゴリ : ");
 			scanf("%d",&temp.cate);
-			if(0<temp.cate || temp.cate<=10)break;
+			if(0<temp.cate && temp.cate<=cate_sum)break;
 
 			printf("入力が正しくありません\n");
 		}
@@ -431,8 +485,6 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 			printf("入力が正しくありません\n");
 		}
 		printf("\n");
-
-		data_sum++;
 	}
 
 
@@ -441,7 +493,7 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 		while(1){
 			printf("年 (1900～2100): ");
 			scanf("%d",&temp.year);
-			if(1900>=temp.year || temp.year<=2100)break;
+			if(1900<=temp.year && temp.year<=2100)break;
 			printf("入力が正しくありません\n");
 		}
 		printf("\n");
@@ -450,7 +502,7 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 		while(1){
 			printf("月 : ");
 			scanf("%d",&temp.month);
-			if(0>temp.month || temp.month<=12)break;
+			if(0<temp.month && temp.month<=12)break;
 			printf("入力が正しくありません\n");
 		}
 		printf("\n");
@@ -459,7 +511,7 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 		while(1){
 			printf("日 : ");
 			scanf("%d",&temp.day);
-			if(0>temp.day || temp.day<=days(temp.year,temp.month))break;
+			if(0<temp.day && temp.day<=days(temp.year,temp.month))break;
 			printf("入力が正しくありません\n");
 		}
 		printf("\n");
@@ -498,7 +550,7 @@ void mode_select(),newuser(),search_and_edit(),Input(),Input_date();
 		}
 		else temp.day+=n;
 		
-		num=search(0,0);;
+		num=search(0,0);
 		if(topback==1)return top(num);
 		if(topback==0)return back(num);
 	}
@@ -719,6 +771,9 @@ int out_sum(int x,int y){	//data[x]~data[y]のx,y
 	int i;
 	long income=0;	//収入
 	long expend=0;	//支出
+
+	printf("配列番号%d番から%d番までのデータが該当します。\n",x,y);
+	printf("該当データを出力します。\n\n");
 
 	for(i=x;i<=y;i++){
 		if(data[i].inout==1) income+=data[i].value;	//収入の場合
