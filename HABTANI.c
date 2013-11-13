@@ -4,13 +4,13 @@
 #include<stdlib.h>
 
 struct data{
-	int year;			//Ç¯
-	int month;			//·î
-	int day;				//Æü
-	char item[100];	//ÆâÍÆ
-	int cate;			//¥«¥Æ¥´¥ê
-	long value;			//¶â³Û
-	int inout;			//¼ıÆşor»Ù½Ğ
+	int year;			//”N
+	int month;			//Œ
+	int day;				//“ú
+	char item[100];	//“à—e
+	int cate;			//ƒJƒeƒSƒŠ
+	long value;			//‹àŠz
+	int inout;			//û“üorxo
 }data[1000],temp,outstring[1000];
 
 struct member{
@@ -36,36 +36,36 @@ void save_dat(),out_txt(),data_input(),show_cate();
 		int read;
 
 		printf("--------------------------------------------------\n");
-		printf("¡¡   ¡¡¡ù ²È·×Êí¥×¥í¥°¥é¥à¤òµ¯Æ°¤·¤Ş¤·¤¿ ¡ù\n");
+		printf("@   @™ ‰ÆŒv•ëƒvƒƒOƒ‰ƒ€‚ğ‹N“®‚µ‚Ü‚µ‚½ ™\n");
 		printf("--------------------------------------------------\n\n");
 
-		if(set_user()==-1){					//ÅĞÏ¿¥æ¡¼¥¶¡¼0¿Í
-			printf("¢¡ ¥¢¥«¥¦¥ó¥È¤¬ÅĞÏ¿¤µ¤ì¤Æ¤¤¤Ş¤»¤ó,¿·µ¬ÅĞÏ¿¤ò¹Ô¤¤¤Ş¤¹.\n\n");
+		if(set_user()==-1){					//“o˜^ƒ†[ƒU[0l
+			printf("Ÿ ƒAƒJƒEƒ“ƒg‚ª“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ,V‹K“o˜^‚ğs‚¢‚Ü‚·.\n\n");
 			while(1){
 				if(newuser()!=-1)break;
 				else{
 					printf("--------------------------------------------------\n");
-					printf("¥¢¥«¥¦¥ó¥È¤¬¤Ê¤¤¾ì¹ç,¥×¥í¥°¥é¥à¤¬µ¯Æ°¤Ç¤­¤Ş¤»¤ó.\n");
-					printf("¥¢¥«¥¦¥ó¥È¤ò¿·µ¬ºîÀ®¤·¤Æ¤¯¤À¤µ¤¤.\n");
+					printf("ƒAƒJƒEƒ“ƒg‚ª‚È‚¢ê‡,ƒvƒƒOƒ‰ƒ€‚ª‹N“®‚Å‚«‚Ü‚¹‚ñ.\n");
+					printf("ƒAƒJƒEƒ“ƒg‚ğV‹Kì¬‚µ‚Ä‚­‚¾‚³‚¢.\n");
 					printf("--------------------------------------------------\n\n\n");
 				}
 			}
 		}
 
 
-		if(set_cate()==-1){					//¥«¥Æ¥´¥ê¥Ç¡¼¥¿0
-			printf("¢¡ ¥«¥Æ¥´¥ê¥Ç¡¼¥¿¤¬ÅĞÏ¿¤µ¤ì¤Æ¤¤¤Ş¤»¤ó,¿·µ¬ÅĞÏ¿¤ò¹Ô¤¤¤Ş¤¹.\n\n");
+		if(set_cate()==-1){					//ƒJƒeƒSƒŠƒf[ƒ^0
+			printf("Ÿ ƒJƒeƒSƒŠƒf[ƒ^‚ª“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ,V‹K“o˜^‚ğs‚¢‚Ü‚·.\n\n");
 			newcate(1);
 		}
 
 		while(1){
-			printf("\n¢¡ ¥¢¥«¥¦¥ó¥ÈÇ§¾Ú²èÌÌ (¥í¥°¥¤¥ó-->1 ¿·µ¬ºîÀ®-->2)\n");
+			printf("\nŸ ƒAƒJƒEƒ“ƒg”FØ‰æ–Ê (ƒƒOƒCƒ“-->1 V‹Kì¬-->2)\n");
 
 			if(check(2)==1){
-				if(login()==1)break;						//¿·µ¬ºîÀ®¤·¤Ê¤«¤Ã¤¿¤È¤­
+				if(login()==1)break;						//V‹Kì¬‚µ‚È‚©‚Á‚½‚Æ‚«
 			}
 			else{
-				printf("\n¢¡ ¥¢¥«¥¦¥ó¥È¿·µ¬ºîÀ®¤ò¹Ô¤¤¤Ş¤¹.\n");
+				printf("\nŸ ƒAƒJƒEƒ“ƒgV‹Kì¬‚ğs‚¢‚Ü‚·.\n");
 				newuser();
 			}
 		}
@@ -73,19 +73,19 @@ void save_dat(),out_txt(),data_input(),show_cate();
 		set_data(login_user);
 
 
-//²È·×Êí¥á¥¤¥óÉôÊ¬³«»Ï
+//‰ÆŒv•ëƒƒCƒ“•”•ªŠJn
 			mode_select();
 			save_dat();
 
 		printf("--------------------------------------------------\n");
-		printf("¡¡   ¡¡¡ù ²È·×Êí¥×¥í¥°¥é¥à¤ò½ªÎ»¤·¤Ş¤¹ ¡ù\n");
+		printf("@   @™ ‰ÆŒv•ëƒvƒƒOƒ‰ƒ€‚ğI—¹‚µ‚Ü‚· ™\n");
 		printf("--------------------------------------------------\n\n");
 	}
 
 
 
 /******************************************************************/
-//										¥â¡¼¥ÉÊ¬´ô
+//										ƒ‚[ƒh•ªŠò
 /******************************************************************/
 	int mode_select(){
 		int i,n,flag=0,num;
@@ -93,54 +93,54 @@ void save_dat(),out_txt(),data_input(),show_cate();
 
 		while(1){
 
-			printf("  ¡û-----------------------------------¡û\n");
-			printf("          1:¥Ç¡¼¥¿ÆşÎÏ\n");
-			printf("          2:¥Ç¡¼¥¿Á´½ĞÎÏ\n");
-			printf("          3:ÀßÄê\n");
-			printf("          4:¥Ç¡¼¥¿¤Î¸¡º÷\n");
-			printf("          5:¥«¥Æ¥´¥ê¤ÎÊÔ½¸\n");
-			printf("          6:¥Ç¡¼¥¿¤ò¥Õ¥¡¥¤¥ë¤Ø½ĞÎÏ\n");
-			printf("         Â¾:½ªÎ»\n");
-			printf("  ¡û-----------------------------------¡û\n");
-			printf("¢¡ ¥â¡¼¥É²£¤Î¿ô»ú¤òÁªÂò¤·¤Æ¤¯¤À¤µ¤¤.\n ");
-			printf("¡¡ Input : ");
+			printf("  ›-----------------------------------›\n");
+			printf("          1:ƒf[ƒ^“ü—Í\n");
+			printf("          2:ƒf[ƒ^‘So—Í\n");
+			printf("          3:İ’è\n");
+			printf("          4:ƒf[ƒ^‚ÌŒŸõ\n");
+			printf("          5:ƒJƒeƒSƒŠ‚Ì•ÒW\n");
+			printf("          6:ƒf[ƒ^‚ğƒtƒ@ƒCƒ‹‚Öo—Í\n");
+			printf("         ‘¼:I—¹\n");
+			printf("  ›-----------------------------------›\n");
+			printf("Ÿ ƒ‚[ƒh‰¡‚Ì”š‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢.\n ");
+			printf("@ Input : ");
 			scanf("%d",&mode);
 
 			switch(mode){
-				case 1:	//¥Ç¡¼¥¿ÆşÎÏ
-					printf("\n¢¡ ¥Ç¡¼¥¿ÆşÎÏ¥â¡¼¥É¤Ç¤¹. ¡Ö-1¡×¤òÆşÎÏ¤¹¤ë¤È½ªÎ»¤·¤Ş¤¹.\n");
+				case 1:	//ƒf[ƒ^“ü—Í
+					printf("\nŸ ƒf[ƒ^“ü—Íƒ‚[ƒh‚Å‚·. u-1v‚ğ“ü—Í‚·‚é‚ÆI—¹‚µ‚Ü‚·.\n");
 					while(1){
 						if(Input(1)==-1)break;
 						else{
-							num=search(0.0);			//back,search¤ò»ÈÍÑ
-							move(num,0);						//move¤ò»ÈÍÑ
+							num=search(0.0);			//back,search‚ğg—p
+							move(num,0);						//move‚ğg—p
 							data[num]=temp;		
 						}
-						printf("¡¡ ¼¡¤Î¥Ç¡¼¥¿¤ÎÆşÎÏ¤ò³«»Ï¤·¤Ş¤¹.\n");
+						printf("@ Ÿ‚Ìƒf[ƒ^‚Ì“ü—Í‚ğŠJn‚µ‚Ü‚·.\n");
 					}
 				break;
 
-				case 2:	//¥Ç¡¼¥¿½ĞÎÏ
+				case 2:	//ƒf[ƒ^o—Í
 					out_all();
 				break;
 
-				case 3:	//»Ä¹â½ĞÎÏ
-					printf("¢¡ ²¿¤ÎÀßÄê¤ò¹Ô¤¤¤Ş¤¹¤«.(¥¢¥«¥¦¥ó¥È-->1 ¥«¥Æ¥´¥ê-->2)\n");
+				case 3:	//c‚o—Í
+					printf("Ÿ ‰½‚Ìİ’è‚ğs‚¢‚Ü‚·‚©.(ƒAƒJƒEƒ“ƒg-->1 ƒJƒeƒSƒŠ-->2)\n");
 					if(check(2)==1)edit_account();
 					else edit_cate();
 				break;
 
-				case 4:	//¥Ç¡¼¥¿¤Î¸¡º÷
+				case 4:	//ƒf[ƒ^‚ÌŒŸõ
 					search_and_edit();
 				break;
 
-				case 5:	//¥«¥Æ¥´¥ê¤ÎÅĞÏ¿ÊÔ½¸
+				case 5:	//ƒJƒeƒSƒŠ‚Ì“o˜^•ÒW
 					newcate();
 				break;
 
 				case 6:
-					printf("¢¡ ½ĞÎÏ·Á¼°¤òÁª¤ó¤Ç¤¯¤À¤µ¤¤\n");
-					printf("¡¡ (txt·Á¼°¤Ç½ĞÎÏ->1 html·Á¼°¤Ç½ĞÎÏ-->2 ¥­¥ã¥ó¥»¥ë-->Â¾)\n");
+					printf("Ÿ o—ÍŒ`®‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢\n");
+					printf("@ (txtŒ`®‚Åo—Í->1 htmlŒ`®‚Åo—Í-->2 ƒLƒƒƒ“ƒZƒ‹-->‘¼)\n");
 					scanf("%d",&mode);
 					if(mode!=1 && mode!=2)break;
 					else{
@@ -161,9 +161,9 @@ void save_dat(),out_txt(),data_input(),show_cate();
 
 
 /******************************************************************/
-//										¥Õ¥¡¥¤¥ëÆşÎÏ
+//										ƒtƒ@ƒCƒ‹“ü—Í
 /******************************************************************/
-//¥æ¡¼¥¶¡¼¥Ç¡¼¥¿¼è¤ê¹ş¤ß
+//ƒ†[ƒU[ƒf[ƒ^æ‚è‚İ
 	int set_user(){
 		int n;
 
@@ -183,7 +183,7 @@ void save_dat(),out_txt(),data_input(),show_cate();
 	}
 
 
-//¥«¥Æ¥´¥ê¥Ç¡¼¥¿¼è¤ê¹ş¤ß
+//ƒJƒeƒSƒŠƒf[ƒ^æ‚è‚İ
 	int set_cate(){
 		int i;
 		char dummy[105];
@@ -196,20 +196,20 @@ void save_dat(),out_txt(),data_input(),show_cate();
 			fscanf(fi,"%s",category[i]);
 
 		fscanf(fi,"%*s");
-		fgets(dummy,10,fi);		//²ş¹ÔÆÉ¤ß¼Î¤Æ
-		fgets(dummy,10,fi);		//²ş¹ÔÆÉ¤ß¼Î¤Æ
+		fgets(dummy,10,fi);		//‰üs“Ç‚İÌ‚Ä
+		fgets(dummy,10,fi);		//‰üs“Ç‚İÌ‚Ä
 		return 0;
 	}
 
 
-//³ºÅö¥æ¡¼¥¶¤Î¤â¤Ä¥Ç¡¼¥¿¼è¤ê¹ş¤ß
+//ŠY“–ƒ†[ƒU‚Ì‚à‚Âƒf[ƒ^æ‚è‚İ
 	int set_data(char *user){
 		int i;
 		char dummy[105];
 
 		if(fi=='\0')return -1;
 
-	//save[]¤Ë³ÊÇ¼
+	//save[]‚ÉŠi”[
 		while(1){
 			fgets(dummy,100,fi);
 
@@ -225,7 +225,7 @@ void save_dat(),out_txt(),data_input(),show_cate();
 			}
 		}
 
-	//¥í¥°¥¤¥ó¥æ¡¼¥¶¤Î¥Ç¡¼¥¿ÆÉ¤ß¹ş¤ß
+	//ƒƒOƒCƒ“ƒ†[ƒU‚Ìƒf[ƒ^“Ç‚İ‚İ
 		fscanf(fi,"%d",&data_sum);
 
 		for(i=0;i<data_sum;i++){
@@ -239,7 +239,7 @@ void save_dat(),out_txt(),data_input(),show_cate();
 		}
 		fscanf(fi,"%*s");
 
-	//save[]¤Ë³ÊÇ¼
+	//save[]‚ÉŠi”[
 		fgets(dummy,100,fi);
 		fgets(dummy,100,fi);
 		while(1){
@@ -257,7 +257,7 @@ void save_dat(),out_txt(),data_input(),show_cate();
 
 
 /******************************************************************/
-//										¥Õ¥¡¥¤¥ë½ĞÎÏ
+//										ƒtƒ@ƒCƒ‹o—Í
 /******************************************************************/
 
 	void save_dat(){
@@ -265,7 +265,7 @@ void save_dat(),out_txt(),data_input(),show_cate();
 
 		fo=fopen("data.dat","w");
 
-//¥æ¡¼¥¶¡¼ÉôÊ¬
+//ƒ†[ƒU[•”•ª
 		fprintf(fo,"%d\n",user_sum);
 
 		for(i=0;i<user_sum;i++){
@@ -275,7 +275,7 @@ void save_dat(),out_txt(),data_input(),show_cate();
 
 		fprintf(fo,"\n**\n\n");
 
-//¥«¥Æ¥´¥êÉôÊ¬
+//ƒJƒeƒSƒŠ•”•ª
 		if(cate_sum!=0){
 			fprintf(fo,"%d\n",cate_sum);
 
@@ -285,7 +285,7 @@ void save_dat(),out_txt(),data_input(),show_cate();
 			fprintf(fo,"\n**\n\n");
 		}
 
-//¥Ç¡¼¥¿ÉôÊ¬
+//ƒf[ƒ^•”•ª
 		if(login_user[0]!='\0'){
 			fprintf(fo,"%s\n",login_user);
 
@@ -310,7 +310,7 @@ void save_dat(),out_txt(),data_input(),show_cate();
 		fclose(fo);
 	}
 
-//txt½ĞÎÏ
+//txto—Í
 	void out_txt(char *name){
 		int i;
 		long sum=0;
@@ -318,18 +318,18 @@ void save_dat(),out_txt(),data_input(),show_cate();
 		char Cate[10];
 		char file[20];
 
-		sprintf(file,"%s¤Î²È·×Êí.txt",name);
-		fo=fopen(file,"w");	//½ĞÎÏ¥Õ¥¡¥¤¥ë¤ò½ñ¤­¹ş¤ß¥â¡¼¥É¤Ç¥ª¡¼¥×¥ó
-		fprintf(fo,"                        ¡ù ²È·×Êí ¡ù                          \n");
+		sprintf(file,"%s‚Ì‰ÆŒv•ë.txt",name);
+		fo=fopen(file,"w");	//o—Íƒtƒ@ƒCƒ‹‚ğ‘‚«‚İƒ‚[ƒh‚ÅƒI[ƒvƒ“
+		fprintf(fo,"                        ™ ‰ÆŒv•ë ™                          \n");
 		fprintf(fo,"----------------------------------------------------------------------------------------\n");
-		fprintf(fo,"    ÆüÉÕ    |              ÆâÍÆ              |   ¥«¥Æ¥´¥ê   |  ¶â³Û[±ß]  |    ¼ı»Ù    \n");
+		fprintf(fo,"    “ú•t    |              “à—e              |   ƒJƒeƒSƒŠ   |  ‹àŠz[‰~]  |    ûx    \n");
 		fprintf(fo,"----------------------------------------------------------------------------------------\n");
-		for(i=0;i<data_sum;i++){	//ÃÍ¤òdata_sum¹ÔÊ¬½ĞÎÏ
+		for(i=0;i<data_sum;i++){	//’l‚ğdata_sums•ªo—Í
 			if(data[i].inout==1){
-				sprintf(IO,"¼ıÆş");
+				sprintf(IO,"û“ü");
 				sum+=data[i].value;
 			}else if(data[i].inout==0){
-				sprintf(IO,"»Ù½Ğ");
+				sprintf(IO,"xo");
 				sum-=data[i].value;
 			}
 
@@ -339,13 +339,13 @@ void save_dat(),out_txt(),data_input(),show_cate();
 				data[i].year,data[i].month,data[i].day,data[i].item,Cate,data[i].value,IO);
 		}
 		fprintf(fo,"----------------------------------------------------------------------------------------\n");
-		fprintf(fo,"    ½¸·×    |                                |            | %11d |\n",sum);
+		fprintf(fo,"    WŒv    |                                |            | %11d |\n",sum);
 		fprintf(fo,"----------------------------------------------------------------------------------------\n");
 		fclose(fo);
 	}
 
 
-//html½ĞÎÏ
+//htmlo—Í
 	int out_html(char *name){
 		int i;
 		char Cate[10];
@@ -353,25 +353,25 @@ void save_dat(),out_txt(),data_input(),show_cate();
 		char file[20];
 
 		char IO[6];
-		sprintf(file,"%s¤Î²È·×Êí.html",name);
+		sprintf(file,"%s‚Ì‰ÆŒv•ë.html",name);
 
-		fo=fopen(file,"w");	//½ĞÎÏ¥Õ¥¡¥¤¥ë¤ò½ñ¤­¹ş¤ß¥â¡¼¥É¤Ç¥ª¡¼¥×¥ó
-
-
-		fprintf(fo,"<html>\n<head>\n<title>%s¤Î²È·×Êí</title>\n</head>\n\n\t<body>\n",name);
-		fprintf(fo,"\t\t<font size=\"5\">%s¤µ¤ó¤Î²È·×Êí</font><br><br>\n\t\t<table border=1 width=\"500\">\n\t\t\t<tr style=\"background:#ccccff\">\n");	//½é´üÆşÎÏ
+		fo=fopen(file,"w");	//o—Íƒtƒ@ƒCƒ‹‚ğ‘‚«‚İƒ‚[ƒh‚ÅƒI[ƒvƒ“
 
 
-		fprintf(fo,"\t\t\t\t<th>ÆüÉÕ</th>\n");	//¸«½Ğ¤·¤ò½ĞÎÏ
-		fprintf(fo,"\t\t\t\t<th>¾¦ÉÊ</th>\n");
-		fprintf(fo,"\t\t\t\t<th>¥«¥Æ¥´¥ê</th>\n");
-		fprintf(fo,"\t\t\t\t<th>¶â³Û[±ß]</th>\n");
-		fprintf(fo,"\t\t\t\t<th>¼ı»Ù</th>\n");
-		//¾ÊÎ¬
+		fprintf(fo,"<html>\n<head>\n<title>%s‚Ì‰ÆŒv•ë</title>\n</head>\n\n\t<body>\n",name);
+		fprintf(fo,"\t\t<font size=\"5\">%s‚³‚ñ‚Ì‰ÆŒv•ë</font><br><br>\n\t\t<table border=1 width=\"500\">\n\t\t\t<tr style=\"background:#ccccff\">\n");	//‰Šú“ü—Í
+
+
+		fprintf(fo,"\t\t\t\t<th>“ú•t</th>\n");	//Œ©o‚µ‚ğo—Í
+		fprintf(fo,"\t\t\t\t<th>¤•i</th>\n");
+		fprintf(fo,"\t\t\t\t<th>ƒJƒeƒSƒŠ</th>\n");
+		fprintf(fo,"\t\t\t\t<th>‹àŠz[‰~]</th>\n");
+		fprintf(fo,"\t\t\t\t<th>ûx</th>\n");
+		//È—ª
 
 		fprintf(fo,"\t\t\t</tr>\n");
 
-		for(i=0;i<data_sum;i++){	//ÃÍ¤òdata_sum¹ÔÊ¬½ĞÎÏ
+		for(i=0;i<data_sum;i++){	//’l‚ğdata_sums•ªo—Í
 				fprintf(fo,"\t\t\t<tr>\n");
 				fprintf(fo,"\t\t\t\t<td align=\"center\">%4d/%02d/%02d</td>\n",data[i].year,data[i].month,data[i].day);
 				fprintf(fo,"\t\t\t\t<td align=\"center\">%s</td>\n",data[i].item);
@@ -379,12 +379,12 @@ void save_dat(),out_txt(),data_input(),show_cate();
 				categories(Cate,i);
 
 				fprintf(fo,"\t\t\t\t<td align=\"center\">%s</td>\n",Cate);
-				fprintf(fo,"\t\t\t\t<td align=\"right\">%ld±ß</td>\n",data[i].value);
+				fprintf(fo,"\t\t\t\t<td align=\"right\">%ld‰~</td>\n",data[i].value);
 
-				if(data[i].inout)sprintf(IO,"¼ıÆş");
-				else if(data[i].inout==0)sprintf(IO,"»Ù½Ğ");	
+				if(data[i].inout)sprintf(IO,"û“ü");
+				else if(data[i].inout==0)sprintf(IO,"xo");	
 				fprintf(fo,"\t\t\t\t<td align=\"center\">%s</td>\n",IO);
-				//¾ÊÎ¬
+				//È—ª
 
 			fprintf(fo,"\t\t\t</tr>\n");
 			if(data[i].inout==1)sum+=data[i].value;
@@ -392,18 +392,18 @@ void save_dat(),out_txt(),data_input(),show_cate();
 		}
 
 				fprintf(fo,"\t\t\t<tr style=\"background:#FFDAB9\">\n");
-				fprintf(fo,"\t\t\t\t<td align=\"center\">½¸·×</td>\n");
-				fprintf(fo,"\t\t\t\t<td align=\"center\">¡¡</td>\n");
-				fprintf(fo,"\t\t\t\t<td align=\"center\">¡¡</td>\n");
+				fprintf(fo,"\t\t\t\t<td align=\"center\">WŒv</td>\n");
+				fprintf(fo,"\t\t\t\t<td align=\"center\">@</td>\n");
+				fprintf(fo,"\t\t\t\t<td align=\"center\">@</td>\n");
 
 				if(sum<0)
-					fprintf(fo,"\t\t\t\t<td style=color:#ff0000; align=\"right\">%ld±ß</td>\n",sum);
+					fprintf(fo,"\t\t\t\t<td style=color:#ff0000; align=\"right\">%ld‰~</td>\n",sum);
 				else
-					fprintf(fo,"\t\t\t\t<td align=\"right\">%ld±ß</td>\n",sum);
-				fprintf(fo,"\t\t\t\t<td align=\"center\">¡¡</td>\n");
+					fprintf(fo,"\t\t\t\t<td align=\"right\">%ld‰~</td>\n",sum);
+				fprintf(fo,"\t\t\t\t<td align=\"center\">@</td>\n");
 
 
-		fprintf(fo,"\t\t\t</tr>\n\t\t</table>\n\t</body>\n</html>");	//ºÇ½ªÆşÎÏ
+		fprintf(fo,"\t\t\t</tr>\n\t\t</table>\n\t</body>\n</html>");	//ÅI“ü—Í
 
 		fclose(fo);
 		return 0;
@@ -412,7 +412,7 @@ void save_dat(),out_txt(),data_input(),show_cate();
 
 
 /******************************************************************/
-//										Ã¼Ëö½ĞÎÏ
+//										’[––o—Í
 /******************************************************************/
 	int out_all(){
 		int i;
@@ -420,20 +420,20 @@ void save_dat(),out_txt(),data_input(),show_cate();
 		char IO[10];
 		char Cate[20];
 		if(data_sum==0){
-			printf("\n¢¨ ¥Ç¡¼¥¿¤¬¤¢¤ê¤Ş¤»¤ó\n\n");
+			printf("\n¦ ƒf[ƒ^‚ª‚ ‚è‚Ü‚¹‚ñ\n\n");
 			return -1;
 		}
-		printf("                                 ¡ù ²È·×Êí ¡ù                                  \n");
+		printf("                                 ™ ‰ÆŒv•ë ™                                  \n");
 		printf("--------------------------------------------------------------------------------\n");
-	    printf("    ÆüÉÕ    |           ÆâÍÆ           |  ¥«¥Æ¥´¥ê  |  ¶â³Û[±ß]  |    ¼ı»Ù    \n");
+	    printf("    “ú•t    |           “à—e           |  ƒJƒeƒSƒŠ  |  ‹àŠz[‰~]  |    ûx    \n");
 	    printf("--------------------------------------------------------------------------------\n");
 
 	    for(i=0;i<data_sum;i++){
 			if(data[i].inout){
-				sprintf(IO,"¼ıÆş");
+				sprintf(IO,"û“ü");
 				sum+=data[i].value;
 			}else if(data[i].inout==0){
-				sprintf(IO,"»Ù½Ğ");
+				sprintf(IO,"xo");
 				sum-=data[i].value;
 			}
 
@@ -443,16 +443,16 @@ void save_dat(),out_txt(),data_input(),show_cate();
 		    data[i].year,data[i].month,data[i].day,data[i].item,Cate,data[i].value,IO);
  		}
 		printf("--------------------------------------------------------------------------------\n");
-	    printf("    ½¸·×    |                          |            | %10d |            \n",sum);
+	    printf("    WŒv    |                          |            | %10d |            \n",sum);
 		printf("--------------------------------------------------------------------------------\n");
     	printf("\n");
 	}
 
 
 /******************************************************************/
-//										¥æ¡¼¥¶¡¼´ÉÍı
+//										ƒ†[ƒU[ŠÇ—
 /******************************************************************/
-//¿·µ¬ÅĞÏ¿
+//V‹K“o˜^
 	int newuser(){
 		char name[30];
 		char word[30];
@@ -461,43 +461,43 @@ void save_dat(),out_txt(),data_input(),show_cate();
 		int flag=0;
 		int s,t;
 
-	//¥æ¡¼¥¶Ì¾ÅĞÏ¿
-		printf("¡ü ¸½ºß»ÈÍÑ¤µ¤ì¤Æ¤¤¤ë¥æ¡¼¥¶Ì¾¤Ï");
+	//ƒ†[ƒU–¼“o˜^
+		printf("œ Œ»İg—p‚³‚ê‚Ä‚¢‚éƒ†[ƒU–¼‚Í");
 		if(user_sum==0)
-			printf("¤¢¤ê¤Ş¤»¤ó");
+			printf("‚ ‚è‚Ü‚¹‚ñ");
 
 		for(s=0;s<user_sum;s++)
 				printf("\n%d:%s",s+1,account[s].user);
 
 		while(1){
-			printf("\n\n¢¡ ´õË¾¤Î¥æ¡¼¥¶Ì¾¤òÆşÎÏ¤·¤Æ²¼¤µ¤¤(±Ñ¿ô»ú¤Î¤ß)\n");
-			printf("¡¡ ¿·µ¬ºîÀ®¤òÃæ»ß¤¹¤ë¾ì¹ç¤Ï¡Ö-1¡×¤òÆşÎÏ¤·¤Æ¤¯¤À¤µ¤¤.\n");
+			printf("\n\nŸ Šó–]‚Ìƒ†[ƒU–¼‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢(‰p”š‚Ì‚İ)\n");
+			printf("@ V‹Kì¬‚ğ’†~‚·‚éê‡‚Íu-1v‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢.\n");
 
 			while(1){
 			printf("   input : ");
 				scanf("%s",name);
 				if(strcmp(name,"-1")==0){
-					printf("\n¢¨ ¥¢¥«¥¦¥ó¥È¿·µ¬ºîÀ®¤òÃæ»ß¤·¤Ş¤·¤¿.\n\n");
+					printf("\n¦ ƒAƒJƒEƒ“ƒgV‹Kì¬‚ğ’†~‚µ‚Ü‚µ‚½.\n\n");
 					return -1;
 				}
 				printf("\n");
 
 				if(char_check(name)==1){
-					printf("¢¨ ±Ñ¿ô»ú°Ê³°¤ÎÊ¸»ú¤¬´Ş¤Ş¤ì¤Æ¤¤¤Ş¤¹,¥¢¥«¥¦¥ó¥ÈÌ¾¤òºÆÆşÎÏ¤·¤Æ¤¯¤À¤µ¤¤.\n");
+					printf("¦ ‰p”šˆÈŠO‚Ì•¶š‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚·,ƒAƒJƒEƒ“ƒg–¼‚ğÄ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢.\n");
 				}
 				else{					
 					if(usercheck(name)==-1)
 						break;
 					else
-						printf("¢¨ ¤¹¤Ç¤ËÂ¸ºß¤¹¤ë¥æ¡¼¥¶Ì¾¤Ç¤¹,ºÆÆşÎÏ¤·¤Æ²¼¤µ¤¤.\n");
+						printf("¦ ‚·‚Å‚É‘¶İ‚·‚éƒ†[ƒU–¼‚Å‚·,Ä“ü—Í‚µ‚Ä‰º‚³‚¢.\n");
 				}
 			}
-			printf("¢¡ ¥æ¡¼¥¶Ì¾¡Ö%s¡×¤ÇÅĞÏ¿¤ò³«»Ï¤·¤Ş¤¹.\n\n",name);
+			printf("Ÿ ƒ†[ƒU–¼u%sv‚Å“o˜^‚ğŠJn‚µ‚Ü‚·.\n\n",name);
 
 
-	//¥Ñ¥¹¥ï¡¼¥ÉÅĞÏ¿
+	//ƒpƒXƒ[ƒh“o˜^
 			while(1){
-				printf("¢¡ ´õË¾¤Î¥Ñ¥¹¥ï¡¼¥É¤òÆşÎÏ¤·¤Æ¤¯¤À¤µ¤¤(±Ñ¿ô»ú¤Î¤ß)\n");
+				printf("Ÿ Šó–]‚ÌƒpƒXƒ[ƒh‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢(‰p”š‚Ì‚İ)\n");
 
 				while(1){
 					printf("   input : ");
@@ -506,10 +506,10 @@ void save_dat(),out_txt(),data_input(),show_cate();
 
 					if(char_check(word)==0)break;
 
-					printf("¢¨ ±Ñ¿ô»ú°Ê³°¤ÎÊ¸»ú¤¬´Ş¤Ş¤ì¤Æ¤¤¤Ş¤¹,¥Ñ¥¹¥ï¡¼¥É¤òºÆÆşÎÏ¤·¤Æ¤¯¤À¤µ¤¤.\n");
+					printf("¦ ‰p”šˆÈŠO‚Ì•¶š‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚·,ƒpƒXƒ[ƒh‚ğÄ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢.\n");
 				}
 
-				printf("¢¡ ³ÎÇ§¤Î¤¿¤áºÆÆşÎÏ¤·¤Æ¤¯¤À¤µ¤¤.\n");
+				printf("Ÿ Šm”F‚Ì‚½‚ßÄ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢.\n");
 
 				while(1){
 					printf("   input : ");
@@ -518,25 +518,25 @@ void save_dat(),out_txt(),data_input(),show_cate();
 
 					if(char_check(word)==0)break;
 
-					printf("¢¨ ±Ñ¿ô»ú°Ê³°¤ÎÊ¸»ú¤¬´Ş¤Ş¤ì¤Æ¤¤¤Ş¤¹,¥Ñ¥¹¥ï¡¼¥É¤òºÆÆşÎÏ¤·¤Æ¤¯¤À¤µ¤¤.\n");
+					printf("¦ ‰p”šˆÈŠO‚Ì•¶š‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚·,ƒpƒXƒ[ƒh‚ğÄ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢.\n");
 				}
 				if(strcmp(word,wordsub)==0)break;
-				printf("¢¨ ¥Ñ¥¹¥ï¡¼¥É¤¬°ìÃ×¤·¤Æ¤¤¤Ş¤»¤ó¡¢ºÆÆşÎÏ¤·¤Æ¤¯¤À¤µ¤¤.\n\n");
+				printf("¦ ƒpƒXƒ[ƒh‚ªˆê’v‚µ‚Ä‚¢‚Ü‚¹‚ñAÄ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢.\n\n");
 			}
 
-			printf(" ¥æ¡¼¥¶Ì¾  : %-20s\n",name);
+			printf(" ƒ†[ƒU–¼  : %-20s\n",name);
 			printf("\n");
 
-			printf("¢¡ ¤³¤Î¥Ç¡¼¥¿¤ÇÅĞÏ¿¤·¤Æ¤è¤í¤·¤¤¤Ç¤¹¤«¡©\n");
+			printf("Ÿ ‚±‚Ìƒf[ƒ^‚Å“o˜^‚µ‚Ä‚æ‚ë‚µ‚¢‚Å‚·‚©H\n");
 
 			if(checkyn()==1)break;
 			else{
-				printf("¢¡ »Ï¤á¤«¤éÆşÎÏ¤·¤Ê¤ª¤·¤Ş¤¹¤«¡©\n");
+				printf("Ÿ n‚ß‚©‚ç“ü—Í‚µ‚È‚¨‚µ‚Ü‚·‚©H\n");
 				
 				if(checkyn()==0)break;
 			}
 		}
-		printf("¡ú %s¤µ¤ó¤Î¥¢¥«¥¦¥ó¥È¤òºîÀ®¤·¤Ş¤·¤¿.\n",name);
+		printf("š %s‚³‚ñ‚ÌƒAƒJƒEƒ“ƒg‚ğì¬‚µ‚Ü‚µ‚½.\n",name);
 		sprintf(account[user_sum].user,name);
 		sprintf(account[user_sum].pass,word);
 		user_sum++;
@@ -544,7 +544,7 @@ void save_dat(),out_txt(),data_input(),show_cate();
 	}
 
 
-//¥æ¡¼¥¶Ì¾°ìÃ×¥Á¥§¥Ã¥¯
+//ƒ†[ƒU–¼ˆê’vƒ`ƒFƒbƒN
 	int usercheck(char *name){
 		int flag=0;
 		int s;
@@ -556,82 +556,82 @@ void save_dat(),out_txt(),data_input(),show_cate();
 	}
 
 
-//¥í¥°¥¤¥ó
+//ƒƒOƒCƒ“
 	int login(){
 		int s,num;
 		char name[30],word[30];
 		
-		printf("\n¡ü ¸½ºßÅĞÏ¿¤µ¤ì¤Æ¤¤¤ë¥¢¥«¥¦¥ó¥È\n");
+		printf("\nœ Œ»İ“o˜^‚³‚ê‚Ä‚¢‚éƒAƒJƒEƒ“ƒg\n");
 		for(s=0;s<user_sum;s++)
-			printf("¡¡ %d:%s\n",s+1,account[s].user);
+			printf("@ %d:%s\n",s+1,account[s].user);
 
-		printf("\n¢¡ ¥í¥°¥¤¥ó¤¹¤ë¥æ¡¼¥¶Ì¾¤òÆşÎÏ¤·¤Æ²¼¤µ¤¤.\n");
+		printf("\nŸ ƒƒOƒCƒ“‚·‚éƒ†[ƒU–¼‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢.\n");
 
 		while(1){
-			printf("¡¡ Input : ");
+			printf("@ Input : ");
 			scanf("%s",name);
 			num=usercheck(name);
 			if(num!=-1)break;
 			else{
-				printf("¢¨ ÆşÎÏ¤µ¤ì¤¿¥æ¡¼¥¶¤ÏÂ¸ºß¤·¤Ş¤»¤ó. (ºÆÆşÎÏ-->1 ¿·µ¬ºîÀ®-->2)\n");
+				printf("¦ “ü—Í‚³‚ê‚½ƒ†[ƒU‚Í‘¶İ‚µ‚Ü‚¹‚ñ. (Ä“ü—Í-->1 V‹Kì¬-->2)\n");
 
 				if(check(2)==2){
-					printf("¡ü ¥¢¥«¥¦¥ó¥È¿·µ¬ºîÀ®¤ò¹Ô¤¤¤Ş¤¹.\n");
+					printf("œ ƒAƒJƒEƒ“ƒgV‹Kì¬‚ğs‚¢‚Ü‚·.\n");
 					newuser();
 					return 0;
 				}
 			}
 		}
-		printf("\n¢¡ %s¤µ¤ó¤Î¥Ñ¥¹¥ï¡¼¥É¤òÆşÎÏ¤·¤Æ²¼¤µ¤¤.\n",name);
+		printf("\nŸ %s‚³‚ñ‚ÌƒpƒXƒ[ƒh‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢.\n",name);
 
 		while(1){
-			printf("¡¡ Input : ");
+			printf("@ Input : ");
 			scanf("%s",word);
 			if(strcmp(word,"end")==0)return 0;
-			//ÄÌ¾ï¥Ñ¥¹¥ï¡¼¥É¤ÎÂ¾¤Ë,¥Ş¥¹¥¿¡¼¥Ñ¥¹¥ï¡¼¥É(Iforgetpassword.)¤Ç¤â¥í¥°¥¤¥ó²Ä
+			//’ÊíƒpƒXƒ[ƒh‚Ì‘¼‚É,ƒ}ƒXƒ^[ƒpƒXƒ[ƒh(Iforgetpassword.)‚Å‚àƒƒOƒCƒ“‰Â
 			if(strcmp(account[num].pass,word)==0 || strcmp("Iforgetpassword.",word)==0){
 				sprintf(login_pass,"%s",word);
 				login_num=num;
 				break;
 			}
 			else{
-				printf("¢¨ ¥Ñ¥¹¥ï¡¼¥É¤¬´Ö°ã¤Ã¤Æ¤¤¤Ş¤¹,ºÆÆşÎÏ¤·¤Æ²¼¤µ¤¤.\n");
-				printf("¢¨ ÊÌ¤Î¥æ¡¼¥¶¤Ç¥í¥°¥¤¥ó¤¹¤ë¾ì¹ç¤Ï¡Öend¡×¤òÆşÎÏ.\n");
+				printf("¦ ƒpƒXƒ[ƒh‚ªŠÔˆá‚Á‚Ä‚¢‚Ü‚·,Ä“ü—Í‚µ‚Ä‰º‚³‚¢.\n");
+				printf("¦ •Ê‚Ìƒ†[ƒU‚ÅƒƒOƒCƒ“‚·‚éê‡‚Íuendv‚ğ“ü—Í.\n");
 			}
 		}
-		printf("\n¡ú %s¤µ¤ó¤Î¥í¥°¥¤¥ó¤ËÀ®¸ù¤·¤Ş¤·¤¿.\n",name);
+		printf("\nš %s‚³‚ñ‚ÌƒƒOƒCƒ“‚É¬Œ÷‚µ‚Ü‚µ‚½.\n",name);
 		sprintf(login_user,"%s",name);
 		return 1;
 	}
 
 
 /******************************************************************/
-//										¥«¥Æ¥´¥ê´ÉÍı
+//										ƒJƒeƒSƒŠŠÇ—
 /******************************************************************/
-//¥«¥Æ¥´¥êÄÉ²Ã
+//ƒJƒeƒSƒŠ’Ç‰Á
 	int newcate(int n){
 		int i,flag;
 		int mode;
 
-		printf("¡ü ¥«¥Æ¥´¥ê¤òÅĞÏ¿¤·¤Ş¤¹.\n");
+		printf("œ ƒJƒeƒSƒŠ‚ğ“o˜^‚µ‚Ü‚·.\n");
 
 		show_cate();
 
 		if(n==1){
-			printf("¢¡ ¥Ç¡¼¥¿¤Î¿·µ¬ÅĞÏ¿¤ò³«»Ï¤·¤Ş¤¹.\n");
+			printf("Ÿ ƒf[ƒ^‚ÌV‹K“o˜^‚ğŠJn‚µ‚Ü‚·.\n");
 			mode=2;
 		}
 		else{
-			printf("¡¡ (ÄÉ²ÃÅĞÏ¿-->1 ¾å½ñ¤­ÅĞÏ¿-->2 ÊÔ½¸-->3 ºï½ü-->4 Ãæ»ß->Â¾)\n");
+			printf("@ (’Ç‰Á“o˜^-->1 ã‘‚«“o˜^-->2 •ÒW-->3 íœ-->4 ’†~->‘¼)\n");
 			mode=check(4);
 		}
 			if(mode==1 || mode==2){
 				if(mode==2)cate_sum==0;
 
-				printf("¡¡ %d¤ÄÌÜ¤Î¥«¥Æ¥´¥ê¤òÆşÎÏ¤·¤Æ²¼¤µ¤¤.\n",cate_sum+1);
-				printf("¡¡ (1¤Ä°Ê¾å¥«¥Æ¥´¥ê¤¬ÅĞÏ¿¤µ¤ì¤Æ¤¤¤ë¾ì¹ç,¡Öend¡×¤ÈÆşÎÏ¤¹¤ë¤È½ªÎ».)\n");
+				printf("@ %d‚Â–Ú‚ÌƒJƒeƒSƒŠ‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢.\n",cate_sum+1);
+				printf("@ (1‚ÂˆÈãƒJƒeƒSƒŠ‚ª“o˜^‚³‚ê‚Ä‚¢‚éê‡,uendv‚Æ“ü—Í‚·‚é‚ÆI—¹.)\n");
 				while(1){
-					printf("¡¡ input : ");
+					printf("@ input : ");
 					while(1){
 						scanf("%s",category[cate_sum]);
 						if(strcmp(category[cate_sum],"end")==0){
@@ -650,28 +650,28 @@ void save_dat(),out_txt(),data_input(),show_cate();
 							}
 						}
 						if(flag!=1)break;
-						else printf("%s¤Ï¤¹¤Ç¤ËÂ¸ºß¤¹¤ë¥«¥Æ¥´¥ê¤Ç¤¹,ºÆÆşÎÏ¤·¤Æ²¼¤µ¤¤.\n");
+						else printf("%s‚Í‚·‚Å‚É‘¶İ‚·‚éƒJƒeƒSƒŠ‚Å‚·,Ä“ü—Í‚µ‚Ä‰º‚³‚¢.\n");
 					}
 					if(flag==3)break;
 					cate_sum++;
-					printf("¡¡ %d¤ÄÌÜ¤Î¥«¥Æ¥´¥ê¤òÆşÎÏ¤·¤Æ²¼¤µ¤¤.\n",cate_sum+1);
+					printf("@ %d‚Â–Ú‚ÌƒJƒeƒSƒŠ‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢.\n",cate_sum+1);
 				}
 			}else if(mode==3){
-				printf("\n\nÊÔ½¸¥â¡¼¥É\n\n");
+				printf("\n\n•ÒWƒ‚[ƒh\n\n");
 			}else if(mode==4){
-				printf("\n\nºï½ü¥â¡¼¥É\n\n");
+				printf("\n\níœƒ‚[ƒh\n\n");
 		}
 
-//sprintf ÊÔ½¸ ºï½ü
+//sprintf •ÒW íœ
 		show_cate();
 
 		}
 
 
-//½ĞÎÏ»ş¥«¥Æ¥´¥êÌ¾¤òÊÖ¤¹
+//o—ÍƒJƒeƒSƒŠ–¼‚ğ•Ô‚·
 	int categories(char *Cate,int i){
 
-		if(data[i].cate>cate_sum)sprintf(Cate,"Ì¤Ê¬Îà");
+		if(data[i].cate>cate_sum)sprintf(Cate,"–¢•ª—Ş");
 		else sprintf(Cate,"%s",category[data[i].cate-1]);
 	}
 
@@ -679,60 +679,60 @@ void save_dat(),out_txt(),data_input(),show_cate();
 	void show_cate(){
 		int i;
 
-		printf("\n¡ü ¸½ºßÅĞÏ¿¤µ¤ì¤Æ¤¤¤ë¥«¥Æ¥´¥ê");
-		if(cate_sum==0)printf("¤Ï¤¢¤ê¤Ş¤»¤ó\n");
+		printf("\nœ Œ»İ“o˜^‚³‚ê‚Ä‚¢‚éƒJƒeƒSƒŠ");
+		if(cate_sum==0)printf("‚Í‚ ‚è‚Ü‚¹‚ñ\n");
 		else{
 			printf("\n");
 			for(i=0;i<cate_sum;i++)
-				printf("¡¡ %d : %s\n",i+1,category[i]);
+				printf("@ %d : %s\n",i+1,category[i]);
 		}
 		printf("\n");
 	}
 
 /******************************************************************/
-//										¥Ç¡¼¥¿ÆşÎÏ
+//										ƒf[ƒ^“ü—Í
 /******************************************************************/
 	int Input(int n){
 		int i;
 
 		if(Input_date(n)==-1)return -1;
 
-	//¾¦ÉÊÆşÎÏ
-		printf("¡¡ ÆâÍÆ : ");
+	//¤•i“ü—Í
+		printf("@ “à—e : ");
 		scanf("%s",temp.item);
 		if(n==1 && strcmp(temp.item,"-1")==0)return -1;
 
-	//¥«¥Æ¥´¥ê¡¼ÆşÎÏ
+	//ƒJƒeƒSƒŠ[“ü—Í
 		while(1){
 			show_cate();
 
-			printf("¢¡ ÅĞÏ¿¤·¤¿¤¤¥«¥Æ¥´¥ê¤ò°ìÍ÷²£¤Î¿ô»ú¤ÇÆşÎÏ¤·¤Æ²¼¤µ¤¤.\n");
+			printf("Ÿ “o˜^‚µ‚½‚¢ƒJƒeƒSƒŠ‚ğˆê——‰¡‚Ì”š‚Å“ü—Í‚µ‚Ä‰º‚³‚¢.\n");
 
-			printf("¡¡ ¥«¥Æ¥´¥ê : ");
+			printf("@ ƒJƒeƒSƒŠ : ");
 
 			scanf("%d",&temp.cate);
 			if(n==1 && temp.cate<0)return -1;
 			if(0<temp.cate && temp.cate<=cate_sum)break;
-			printf("¢¨ ÆşÎÏ¤¬Àµ¤·¤¯¤¢¤ê¤Ş¤»¤ó\n");
+			printf("¦ “ü—Í‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñ\n");
 		}
 
-	//²Á³ÊÆşÎÏ
+	//‰¿Ši“ü—Í
 		while(1){
-			printf("¡¡ ¶â³Û : ");
+			printf("@ ‹àŠz : ");
 			scanf("%d",&temp.value);
 			if(n==1 && temp.value<0)return -1;
 			if(0<temp.value && temp.value<=2147483647);
-				break; //long int·¿¤ÎºÇÂç(2,147,483,647)°Ê¾å¤ÏÃÆ¤¯
-			printf("¢¨ ÆşÎÏ¤¬Àµ¤·¤¯¤¢¤ê¤Ş¤»¤ó\n");
+				break; //long intŒ^‚ÌÅ‘å(2,147,483,647)ˆÈã‚Í’e‚­
+			printf("¦ “ü—Í‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñ\n");
 		}
 
-	//¼ıÆş or »Ù½Ğ
+	//û“ü or xo
 		while(1){
-			printf("¡¡ ¼ı»Ù (¼ıÆş --> 1 , »Ù½Ğ --> 0) : ");
+			printf("@ ûx (û“ü --> 1 , xo --> 0) : ");
 			scanf("%d",&temp.inout);
 			if(n==1 && temp.inout<0)return -1;
 			if(1==temp.inout || temp.inout==0)break;
-			printf("¢¨ ÆşÎÏ¤¬Àµ¤·¤¯¤¢¤ê¤Ş¤»¤ó\n");
+			printf("¦ “ü—Í‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñ\n");
 		}
 		printf("\n");
 		return 0;
@@ -740,31 +740,31 @@ void save_dat(),out_txt(),data_input(),show_cate();
 
 
 	int Input_date(int n){
-	//Ç¯ÆşÎÏ
+	//”N“ü—Í
 		while(1){
-			printf("¡¡ Ç¯ (1900¡Á2100): ");
+			printf("@ ”N (1900`2100): ");
 			scanf("%d",&temp.year);
 			if(n==1 && temp.year<0)return -1;
 			if(1900<=temp.year && temp.year<=2100)break;
-			printf("¢¨ ÆşÎÏ¤¬Àµ¤·¤¯¤¢¤ê¤Ş¤»¤ó\n");
+			printf("¦ “ü—Í‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñ\n");
 		}
 
-	//·îÆşÎÏ
+	//Œ“ü—Í
 		while(1){
-			printf("¡¡ ·î : ");
+			printf("@ Œ : ");
 			scanf("%d",&temp.month);
 			if(n==1 && temp.month<0)return -1;
 			if(0<temp.month && temp.month<=12)break;
-			printf("¢¨ ÆşÎÏ¤¬Àµ¤·¤¯¤¢¤ê¤Ş¤»¤ó\n");
+			printf("¦ “ü—Í‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñ\n");
 		}
 
-	//ÆüÆşÎÏ
+	//“ú“ü—Í
 		while(1){
-			printf(" ¡¡Æü : ");
+			printf(" @“ú : ");
 			scanf("%d",&temp.day);
 			if(n==1 && temp.day<0)return -1;
 			if(0<temp.day && temp.day<=days(temp.year,temp.month))break;
-			printf("¢¨ ÆşÎÏ¤¬Àµ¤·¤¯¤¢¤ê¤Ş¤»¤ó\n");
+			printf("¦ “ü—Í‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñ\n");
 		}
 
 		return 0;
@@ -773,7 +773,7 @@ void save_dat(),out_txt(),data_input(),show_cate();
 
 
 /******************************************************************/
-//										¥Ç¡¼¥¿¸¡º÷
+//										ƒf[ƒ^ŒŸõ
 /******************************************************************/
 
 	int search(){
@@ -788,7 +788,7 @@ void save_dat(),out_txt(),data_input(),show_cate();
 
 
 
-//date¤ÎnÆü¸å¤ò¥ê¥¿¡¼¥ó
+//date‚Ìn“úŒã‚ğƒŠƒ^[ƒ“
 	int serch_later(int n,int topback){
 		int num;
 
@@ -805,14 +805,14 @@ void save_dat(),out_txt(),data_input(),show_cate();
 		if(topback==0)return back(num);
 	}
 
-//¥«¥Æ¥´¥ê¤Ç¸¡º÷
+//ƒJƒeƒSƒŠ‚ÅŒŸõ
 	int cate_search(){
 		int i,j;
 		int cate;
 
 		printf("\n");
 		show_cate();
-		printf("¢¡ ¸¡º÷¤¹¤ë¥«¥Æ¥´¥ê¤òÆşÎÏ\n");
+		printf("Ÿ ŒŸõ‚·‚éƒJƒeƒSƒŠ‚ğ“ü—Í\n");
 		scanf("%d",&cate);
 					
 		j=0;
@@ -827,7 +827,7 @@ void save_dat(),out_txt(),data_input(),show_cate();
 
 
 
-//ÆüÉÕ»ØÄê¸¡º÷
+//“ú•tw’èŒŸõ
 	int date_search(){
 		int start,end;
 		int i,j,result;
@@ -835,7 +835,7 @@ void save_dat(),out_txt(),data_input(),show_cate();
 
 		result=search(0,0);
 		if(result==-1){
-			printf("¢¨ ³ºÅöÃÍ¤¬¤¢¤ê¤Ş¤»¤ó.\n");
+			printf("¦ ŠY“–’l‚ª‚ ‚è‚Ü‚¹‚ñ.\n");
 		}else{
 			start=top(result);
 			end=back(result);
@@ -849,23 +849,23 @@ void save_dat(),out_txt(),data_input(),show_cate();
 	}
 
 
-//´ü´Ö»ØÄê¸¡º÷
+//ŠúŠÔw’èŒŸõ
 	int term_search(){
 		int start,end;
 		int i,j=0,n;
 		Input_date(0);
 
-		printf("¢¡ ²¿Æü¸å¤Ş¤Ç¤ò¸¡º÷¤·¤Ş¤¹¤«.\n");
-		printf("¡¡ input : ");
+		printf("Ÿ ‰½“úŒã‚Ü‚Å‚ğŒŸõ‚µ‚Ü‚·‚©.\n");
+		printf("@ input : ");
 		scanf("%d",&n);
-		printf("¡ü %dÇ¯%d·î%dÆü¤«¤é%dÆü´Ö¤Î¥Ç¡¼¥¿¤ò¸¡º÷¤·¤Ş¤¹.\n\n",temp.year,temp.month,temp.day,n);
+		printf("œ %d”N%dŒ%d“ú‚©‚ç%d“úŠÔ‚Ìƒf[ƒ^‚ğŒŸõ‚µ‚Ü‚·.\n\n",temp.year,temp.month,temp.day,n);
 		
 		start=top(search(0,0));
 		end=serch_later(n,0);
 
-		printf("¡ü ÇÛÎóÈÖ¹æ%dÈÖ¤«¤é%dÈÖ¤Ş¤Ç¤Î¥Ç¡¼¥¿¤¬³ºÅö¤·¤Ş¤¹.\n",start,end);
-		printf(" ¡¡³ºÅö¥Ç¡¼¥¿¤ò½ĞÎÏ¤·¤Ş¤¹.\n\n");
-//		if(data[end].year==0)printf("Â¸ºß¤·¤Ş¤»¤ó");
+		printf("œ ”z—ñ”Ô†%d”Ô‚©‚ç%d”Ô‚Ü‚Å‚Ìƒf[ƒ^‚ªŠY“–‚µ‚Ü‚·.\n",start,end);
+		printf(" @ŠY“–ƒf[ƒ^‚ğo—Í‚µ‚Ü‚·.\n\n");
+//		if(data[end].year==0)printf("‘¶İ‚µ‚Ü‚¹‚ñ");
 //		else
 			for(i=start;i<=end;i++){
 				address[j]=i;
@@ -879,22 +879,22 @@ void save_dat(),out_txt(),data_input(),show_cate();
 		char str[10];
 		int num;
 		int i,j,mode;
-		printf("¢¡ ¥Ç¡¼¥¿¸¡º÷ (ÆüÉÕ¸¡º÷-->1 ´ü´Ö»ØÄê¸¡º÷-->2 ¥«¥Æ¥´¥ê¸¡º÷-->3)\n");//Â¾¤ò¤Ä¤±¤ë*******************
+		printf("Ÿ ƒf[ƒ^ŒŸõ (“ú•tŒŸõ-->1 ŠúŠÔw’èŒŸõ-->2 ƒJƒeƒSƒŠŒŸõ-->3)\n");//‘¼‚ğ‚Â‚¯‚é*******************
 
 		mode=check(3);
 
-		//ÆüÉÕ¤Ç¸¡º÷
+		//“ú•t‚ÅŒŸõ
 		if(mode==1){
 			j=date_search();
 		}
 
-		//´ü´Ö»ØÄê¸¡º÷
+		//ŠúŠÔw’èŒŸõ
 		else if(mode==2){
 			j=term_search();
 		}
 
 
-		//¥«¥Æ¥´¥ê¤Ç¸¡º÷
+		//ƒJƒeƒSƒŠ‚ÅŒŸõ
 		else if(mode==3){
 			j=cate_search();
 		}
@@ -909,20 +909,20 @@ void save_dat(),out_txt(),data_input(),show_cate();
 
 
 
-		//Â³¹Ô³ÎÇ§
-		printf("¢¡ Â³¤±¤ÆÊÔ½¸,ºï½ü,¼ı»Ù¤Î½ĞÎÏ¤ò¹Ô¤¤¤Ş¤¹¤«. (ÊÔ½¸-->1 ºï½ü-->2 ¼ı»Ù-->3 ¹Ô¤ï¤Ê¤¤-->4 )\n");
+		//‘±sŠm”F
+		printf("Ÿ ‘±‚¯‚Ä•ÒW,íœ,ûx‚Ìo—Í‚ğs‚¢‚Ü‚·‚©. (•ÒW-->1 íœ-->2 ûx-->3 s‚í‚È‚¢-->4 )\n");
 		mode=check(4);
 		if(mode!=4){
-			if(mode==1)sprintf(str,"ÊÔ½¸");
-			else if(mode==2)sprintf(str,"ºï½ü");
+			if(mode==1)sprintf(str,"•ÒW");
+			else if(mode==2)sprintf(str,"íœ");
 			else if(mode==3){
 				out_sum(j);
 				return 0;
 			}
 
 
-			printf("¢¡ ¸¡º÷¤·¤¿¥Ç¡¼¥¿¤Îº¸¤ÎÈÖ¹æ¤Ç%s¤ò¹Ô¤¤¤Ş¤¹.\n",str);
-			printf("¡¡ %s¤·¤¿¤¤¥Ç¡¼¥¿¤ÎÈÖ¹æ¤òÆşÎÏ¤·¤Æ¤¯¤À¤µ¤¤.\n",str);
+			printf("Ÿ ŒŸõ‚µ‚½ƒf[ƒ^‚Ì¶‚Ì”Ô†‚Å%s‚ğs‚¢‚Ü‚·.\n",str);
+			printf("@ %s‚µ‚½‚¢ƒf[ƒ^‚Ì”Ô†‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢.\n",str);
 			scanf("%d",&num);
 			num--;
 
@@ -932,22 +932,22 @@ void save_dat(),out_txt(),data_input(),show_cate();
 			printf("%d ",outstring[num].value);
 			printf("%d\n",outstring[num].inout);
 
-			printf("¡ü ¤³¤Î¥Ç¡¼¥¿¤ò%s¤·¤Ş¤¹.\n",str);
+			printf("œ ‚±‚Ìƒf[ƒ^‚ğ%s‚µ‚Ü‚·.\n",str);
 
 			while(1){
-			//ÊÔ½¸
+			//•ÒW
 				if(mode==1){
-					printf("¢¡ ¥Ç¡¼¥¿¤òÆşÎÏ¤·¤Æ²¼¤µ¤¤(-1¤òÆşÎÏ¤¹¤ë¤ÈÊÔ½¸¤òÃæ»ß¤·¤Ş¤¹.)\n");
+					printf("Ÿ ƒf[ƒ^‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢(-1‚ğ“ü—Í‚·‚é‚Æ•ÒW‚ğ’†~‚µ‚Ü‚·.)\n");
 					if(Input(1)==-1){
-						printf("¢¨ ÊÔ½¸¤òÃæ»ß¤·¤Ş¤¹.\n");
+						printf("¦ •ÒW‚ğ’†~‚µ‚Ü‚·.\n");
 						break;
 					}
 					move(address[num],1);
-					num=search(0.0);			//back,search¤ò»ÈÍÑ
-					move(num,0);						//move¤ò»ÈÍÑ
+					num=search(0.0);			//back,search‚ğg—p
+					move(num,0);						//move‚ğg—p
 					data[num]=temp;		
 
-				//ºï½ü
+				//íœ
 				}else if(mode==2){
 					move(address[num],1);
 				}
@@ -970,7 +970,7 @@ void save_dat(),out_txt(),data_input(),show_cate();
 	}
 
 
-//¹½Â¤ÂÎ¥Ç¡¼¥¿¤ò£±¤Ä¤º¤Ä¤º¤é¤¹
+//\‘¢‘Ìƒf[ƒ^‚ğ‚P‚Â‚¸‚Â‚¸‚ç‚·
 	int move(int n,int updown){
 		int i;
 
@@ -990,7 +990,7 @@ void save_dat(),out_txt(),data_input(),show_cate();
 	}
 
 
-//°ú¿ô¤ËÇ¯¤È·î¤òÅê¤²¤ë¤È,¤½¤Î·î¤ÎÆü¿ô¤òÊÖ¤¹
+//ˆø”‚É”N‚ÆŒ‚ğ“Š‚°‚é‚Æ,‚»‚ÌŒ‚Ì“ú”‚ğ•Ô‚·
 int days(int year,int month){
 	switch(month){
 		case 1: case 3: case 5: case 7: case 8: case 10: case 12:
@@ -1009,25 +1009,25 @@ int days(int year,int month){
 }
 
 
-//¤¦¤ë¤¦Ç¯
+//‚¤‚é‚¤”N
 int leap(int year){
 	if(year%4==0 && year%100!=0 || year%400==0){
-		return 1; //¤¦¤ë¤¦Ç¯¤Ê¤é1¤òÊÖ¤¹
-	}else return 0; //¤¦¤ë¤¦Ç¯¤Ç¤Ê¤¤¤Ê¤é0¤òÊÖ¤¹
+		return 1; //‚¤‚é‚¤”N‚È‚ç1‚ğ•Ô‚·
+	}else return 0; //‚¤‚é‚¤”N‚Å‚È‚¢‚È‚ç0‚ğ•Ô‚·
 }
 
 
 
 /******************************************************************/
-//										ÀßÄê
+//										İ’è
 /******************************************************************/
 	int edit_account(){
 		int i,s,t,mode,num;
 
-		printf("\n¡ü ¤³¤Î¥¢¥«¥¦¥ó¥È¤Î¾ğÊó\n");
+		printf("\nœ ‚±‚ÌƒAƒJƒEƒ“ƒg‚Ìî•ñ\n");
 		for(i=0;i<user_sum;i++){
-			printf("¡¡ ¥æ¡¼¥¶Ì¾:%-20s\n",login_user);
-			printf("¡¡ ¥Ñ¥¹¥ï¡¼¥É:");
+			printf("@ ƒ†[ƒU–¼:%-20s\n",login_user);
+			printf("@ ƒpƒXƒ[ƒh:");
 			for(s=0;s<strlen(login_pass)/3;s++)
 				printf("%c",login_pass);
 			for(t=s;t<strlen(login_pass);t++)
@@ -1036,37 +1036,37 @@ int leap(int year){
 		}
 		printf("\n");
 
-		printf("¢¡ ÊÔ½¸-->1 ºï½ü-->2 Ãæ»ß->3\n");
+		printf("Ÿ •ÒW-->1 íœ-->2 ’†~->3\n");
 		mode=check(3);
 
 		if(mode==1){
-			printf("\n¢¡ %s¤µ¤ó¤Î¥¢¥«¥¦¥ó¥È¤òÊÔ½¸¤Ç¤­¤Ş¤¹,ÊÔ½¸¤·¤Ş¤¹¤«.",login_user);
+			printf("\nŸ %s‚³‚ñ‚ÌƒAƒJƒEƒ“ƒg‚ğ•ÒW‚Å‚«‚Ü‚·,•ÒW‚µ‚Ü‚·‚©.",login_user);
 			if(checkyn()==1){
-				printf("\n¢¡ ½ñ¤­´¹¤¨¤ë¥Ç¡¼¥¿¤òÁªÂò¤·¤Æ¤¯¤À¤µ¤¤.(¥æ¡¼¥¶Ì¾-->1 ¥Ñ¥¹¥ï¡¼¥É-->2)\n");
+				printf("\nŸ ‘‚«Š·‚¦‚éƒf[ƒ^‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢.(ƒ†[ƒU–¼-->1 ƒpƒXƒ[ƒh-->2)\n");
 				mode=check(2);
 
 				if(mode==1){
-					printf("\n¢¡ ½ñ¤­´¹¤¨¸å¤Î¥æ¡¼¥¶Ì¾¤òÆşÎÏ¤·¤Æ¤¯¤À¤µ¤¤\n");
-					printf("¡¡ input : ");
+					printf("\nŸ ‘‚«Š·‚¦Œã‚Ìƒ†[ƒU–¼‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢\n");
+					printf("@ input : ");
 					scanf("%s",account[login_num].user);
-					printf("\n¡ú ¥æ¡¼¥¶Ì¾¤ò%s¤ËÊÑ¹¹¤·¤Ş¤·¤¿.\n",account[login_num].user);
+					printf("\nš ƒ†[ƒU–¼‚ğ%s‚É•ÏX‚µ‚Ü‚µ‚½.\n",account[login_num].user);
 					sprintf(login_user,"%s",account[login_num].user);
 				}
 				else if(mode==2){
-					printf("\n¢¡ ½ñ¤­´¹¤¨¸å¤Î¥Ñ¥¹¥ï¡¼¥É¤òÆşÎÏ¤·¤Æ¤¯¤À¤µ¤¤\n");
-					printf("¡¡ input : ");
+					printf("\nŸ ‘‚«Š·‚¦Œã‚ÌƒpƒXƒ[ƒh‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢\n");
+					printf("@ input : ");
 					scanf("%s",account[login_num].pass);
-					printf("\n¡ú ¥Ñ¥¹¥ï¡¼¥É¤ò%s¤ËÊÑ¹¹¤·¤Ş¤·¤¿.\n",account[login_num].pass);
+					printf("\nš ƒpƒXƒ[ƒh‚ğ%s‚É•ÏX‚µ‚Ü‚µ‚½.\n",account[login_num].pass);
 					sprintf(login_pass,"%s",account[login_num].pass);
 				}
 			}
-			else printf("\n¡ú ¥¢¥«¥¦¥ó¥È¤ÎÊÔ½¸¤ò¥­¥ã¥ó¥»¥ë¤·¤Ş¤·¤¿.\n");
+			else printf("\nš ƒAƒJƒEƒ“ƒg‚Ì•ÒW‚ğƒLƒƒƒ“ƒZƒ‹‚µ‚Ü‚µ‚½.\n");
 		}
 		else if(mode==2){
-			printf("¢¡ %s¤µ¤ó¤Î¥¢¥«¥¦¥ó¥È¤òºï½ü¤Ç¤­¤Ş¤¹,ºï½ü¤·¤Ş¤¹¤«.\n",login_user);
+			printf("Ÿ %s‚³‚ñ‚ÌƒAƒJƒEƒ“ƒg‚ğíœ‚Å‚«‚Ü‚·,íœ‚µ‚Ü‚·‚©.\n",login_user);
 
 			if(checkyn()==1){
-				printf("¡¡ ÊİÂ¸¤µ¤ì¤¿¥Ç¡¼¥¿¤âÁ´¤Æºï½ü¤µ¤ì¤Ş¤¹.ËÜÅö¤Ëºï½ü¤·¤Ş¤¹¤«?\n");
+				printf("@ •Û‘¶‚³‚ê‚½ƒf[ƒ^‚à‘S‚Äíœ‚³‚ê‚Ü‚·.–{“–‚Éíœ‚µ‚Ü‚·‚©?\n");
 				if(checkyn()==1){
 					login_user[0]='\0';
 					for(i=num;i<user_sum-1;i++)
@@ -1076,19 +1076,19 @@ int leap(int year){
 					save_dat();
 
 					printf("--------------------------------------------------\n");
-					printf("¡¡   ¡¡¡ù ²È·×Êí¥×¥í¥°¥é¥à¤ò½ªÎ»¤·¤Ş¤¹ ¡ù\n");
+					printf("@   @™ ‰ÆŒv•ëƒvƒƒOƒ‰ƒ€‚ğI—¹‚µ‚Ü‚· ™\n");
 					printf("--------------------------------------------------\n\n");
 
 					exit(0);
 				}
-				else printf("\n¡ú ¥¢¥«¥¦¥ó¥È¤Îºï½ü¤ò¥­¥ã¥ó¥»¥ë¤·¤Ş¤·¤¿\n");
+				else printf("\nš ƒAƒJƒEƒ“ƒg‚Ìíœ‚ğƒLƒƒƒ“ƒZƒ‹‚µ‚Ü‚µ‚½\n");
 			}
-			else printf("\n¡ú ¥¢¥«¥¦¥ó¥È¤Îºï½ü¤ò¥­¥ã¥ó¥»¥ë¤·¤Ş¤·¤¿\n");
+			else printf("\nš ƒAƒJƒEƒ“ƒg‚Ìíœ‚ğƒLƒƒƒ“ƒZƒ‹‚µ‚Ü‚µ‚½\n");
 		}
 	}
 
 	int edit_cate(){
-		printf("¢¨ ¥«¥Æ¥´¥êÀßÄê¥â¡¼¥É¤Ï¼ÂÁõ¤µ¤ì¤Æ¤¤¤Ş¤»¤ó.\n");
+		printf("¦ ƒJƒeƒSƒŠİ’èƒ‚[ƒh‚ÍÀ‘•‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ.\n");
 	}
 
 
@@ -1096,24 +1096,24 @@ int leap(int year){
 
 
 /******************************************************************/
-//										Ì¤Ê¬Îà
+//										–¢•ª—Ş
 /******************************************************************/
 
 int out_sum(int y){
 	int i;
-	long income=0;	//¼ıÆş
-	long expend=0;	//»Ù½Ğ
+	long income=0;	//û“ü
+	long expend=0;	//xo
 
-	printf("\n¡ü ¼ı»Ù¤ò½ĞÎÏ¤·¤Ş¤¹\n\n");
+	printf("\nœ ûx‚ğo—Í‚µ‚Ü‚·\n\n");
 
 	for(i=0;i<=y;i++){
-		if(outstring[i].inout==1) income+=outstring[i].value;	//¼ıÆş¤Î¾ì¹ç
-		if(outstring[i].inout==0) expend+=outstring[i].value;	//»Ù½Ğ¤Î¾ì¹ç
+		if(outstring[i].inout==1) income+=outstring[i].value;	//û“ü‚Ìê‡
+		if(outstring[i].inout==0) expend+=outstring[i].value;	//xo‚Ìê‡
 	}
-	printf("¼ıÆş ==> %d ±ß\n",income);
-	printf("»Ù½Ğ ==> %d ±ß\n",expend);
-	if(income-expend>=0) printf("%ld ±ß¥×¥é¥¹\n",income-expend);
-	else printf("%ld ±ß¥Ş¥¤¥Ê¥¹\n",expend-income);
+	printf("û“ü ==> %d ‰~\n",income);
+	printf("xo ==> %d ‰~\n",expend);
+	if(income-expend>=0) printf("%ld ‰~ƒvƒ‰ƒX\n",income-expend);
+	else printf("%ld ‰~ƒ}ƒCƒiƒX\n",expend-income);
 
 	return 0;
 }
@@ -1121,9 +1121,9 @@ int out_sum(int y){
 
 
 /******************************************************************/
-//										ÊØÍø´Ø¿ô
+//										•Ö—˜ŠÖ”
 /******************************************************************/
-//YesNo¤Î¥Á¥§¥Ã¥¯
+//YesNo‚Ìƒ`ƒFƒbƒN
 	int checkyn(){
 		char read[10];
 
@@ -1136,16 +1136,16 @@ int out_sum(int y){
 
 			else if(strcmp(read,"n")==0)return 0;
 
-			printf("¢¨ Ìµ¸ú¤ÊÆşÎÏ¤Ç¤¹,ºÆÆşÎÏ¤·¤Æ²¼¤µ¤¤.\n");
+			printf("¦ –³Œø‚È“ü—Í‚Å‚·,Ä“ü—Í‚µ‚Ä‰º‚³‚¢.\n");
 		}
 	}
 
 
-//È¾³Ñ±Ñ¿ô¥Á¥§¥Ã¥¯
+//”¼Šp‰p”ƒ`ƒFƒbƒN
 	int char_check(char *string){
 		int i;
 
-		for(i=0;i<strlen(string);i++){												//¤¦¤´¤¯¤«¤Ê¡©
+		for(i=0;i<strlen(string);i++){												//‚¤‚²‚­‚©‚ÈH
 			if(string[i]=='\0')break;
 			else{
 				if(('a'<=string[i] && string[i]<='z') ||
@@ -1157,7 +1157,7 @@ int out_sum(int y){
 		return 0;
 	}
 
-//1,2Ê¬´ô¥Á¥§¥Ã¥¯
+//1,2•ªŠòƒ`ƒFƒbƒN
 	int check(int n){
 		int mode;
 		while(1){
@@ -1166,12 +1166,12 @@ int out_sum(int y){
 
 			if(1<=mode && mode<=n)return mode;
 			else
-				printf("¢¨ Ìµ¸ú¤ÊÃÍ¤Ç¤¹,ºÆÆşÎÏ¤·¤Æ²¼¤µ¤¤.\n");
+				printf("¦ –³Œø‚È’l‚Å‚·,Ä“ü—Í‚µ‚Ä‰º‚³‚¢.\n");
 		}
 	}
 
 
-//ÆÃÄê¤ÎÇÛÎó¤ÎÈÖÃÏ¤ÎÇ¯·îÆü¤ÈÆ±¤¸ÆüÉÕ¤Î¥Ç¡¼¥¿¤Î¤¦¤Á,ÀèÆ¬¤Ë¤¢¤ë¥Ç¡¼¥¿¤ÎÈÖÃÏ¤òÊÖ¤¹
+//“Á’è‚Ì”z—ñ‚Ì”Ô’n‚Ì”NŒ“ú‚Æ“¯‚¶“ú•t‚Ìƒf[ƒ^‚Ì‚¤‚¿,æ“ª‚É‚ ‚éƒf[ƒ^‚Ì”Ô’n‚ğ•Ô‚·
 	int top(int num){
 		if(num==data_sum)return num;
 		while(datecmp(data[num-1].year,data[num-1].month,data[num-1].day,
@@ -1181,7 +1181,7 @@ int out_sum(int y){
 	}
 
 
-//ÆÃÄê¤ÎÇÛÎó¤ÎÈÖÃÏ¤ÎÇ¯·îÆü¤ÈÆ±¤¸ÆüÉÕ¤Î¥Ç¡¼¥¿¤Î¤¦¤Á,¸åÈø¤Ë¤¢¤ë¥Ç¡¼¥¿¤ÎÈÖÃÏ¤òÊÖ¤¹
+//“Á’è‚Ì”z—ñ‚Ì”Ô’n‚Ì”NŒ“ú‚Æ“¯‚¶“ú•t‚Ìƒf[ƒ^‚Ì‚¤‚¿,Œã”ö‚É‚ ‚éƒf[ƒ^‚Ì”Ô’n‚ğ•Ô‚·
 	int back(int num){
 		if(num==data_sum)return num;
 		while(datecmp(data[num+1].year,data[num+1].month,data[num+1].day,
