@@ -619,14 +619,27 @@ void save_dat(),out_txt(),data_input(),show_cate();
 
 		if(n==1){
 			printf("◆ データの新規登録を開始します.\n");
-			mode=2;
+			mode=1;
 		}
 		else{
 			printf("　 (追加登録-->1 上書き登録-->2 編集-->3 削除-->4 中止->他)\n");
 			mode=check(4);
 		}
+			if(2<=mode && mode<=4){
+					printf("\n--------------------------------------------------------------------\n");
+					printf("この処理を行うと,保存データのカテゴリ項目が変化する可能\性があります.\n");
+					printf("よって,保存データが存在しない場合に行うことが推奨されます.\n");
+					printf("--------------------------------------------------------------------\n\n\n");
+
+					printf("◆ 処理を続行してよろしいですか.");
+					if(checkyn()==0){
+						printf("※ 処理を中断しました\n\n");
+						return -1;
+				}
+			}
+
 			if(mode==1 || mode==2){
-				if(mode==2)cate_sum==0;
+				if(mode==2)cate_sum=0;
 
 				printf("　 %dつ目のカテゴリを入力して下さい.\n",cate_sum+1);
 				printf("　 (1つ以上カテゴリが登録されている場合,「end」と入力すると終了.)\n");
@@ -643,18 +656,24 @@ void save_dat(),out_txt(),data_input(),show_cate();
 							cate_sum--;
 						}
 						flag=0;
+						if(cate_check(category[cate_sum])==-1)flag=1;
+
+/*						flag=0;
 						for(i=0;i<cate_sum-1;i++){
 							if(strcmp(category[i],category[cate_sum])==0){
 								flag=1;
 								break;
 							}
-						}
+*/
 						if(flag!=1)break;
-						else printf("%sはすでに存在するカテゴリです,再入力して下さい.\n");
+						else{
+							printf("\n※ %sはすでに存在するカテゴリです,再入力して下さい.\n",category[cate_sum]);
+							cate_sum--;
+						}
 					}
 					if(flag==3)break;
 					cate_sum++;
-					printf("　 %dつ目のカテゴリを入力して下さい.\n",cate_sum+1);
+					printf("\n　 %dつ目のカテゴリを入力して下さい.\n",cate_sum+1);
 				}
 			}else if(mode==3){
 				printf("\n\n編集モード\n\n");
@@ -688,6 +707,18 @@ void save_dat(),out_txt(),data_input(),show_cate();
 		}
 		printf("\n");
 	}
+
+
+//カテゴリ重複チェック
+//一致すると-1 問題なければ0リターン
+	int cate_check(char *string){
+		int i;
+
+		for(i=0;i<cate_sum;i++)
+			if(strcmp(category[i],string)==0)return -1;
+		return 0;
+	}
+
 
 /******************************************************************/
 //										データ入力
@@ -776,13 +807,18 @@ void save_dat(),out_txt(),data_input(),show_cate();
 //										データ検索
 /******************************************************************/
 
-	int search(){
+	int search(int a,int b){
 		int i,num;
 
+/////////////////該当より小さいままみつからないと負の数返す
+
+		if(data_sum==0)return -1;			//データ０だと負の数返す
 		for(i=0;i<data_sum;i++){
 			num=datecmp(data[i].year,data[i].month,data[i].day,temp.year,temp.month,temp.day);
-			if(num==1 || num==0)break;
+			if(num==0)break;
+			if(num==1)return -(i+1);		//通り過ぎたら負の数返す
 		}
+		printf("num=%d",num);
 		return i;
 	}
 
@@ -834,8 +870,8 @@ void save_dat(),out_txt(),data_input(),show_cate();
 		Input_date(0);
 
 		result=search(0,0);
-		if(result==-1){
-			printf("※ 該当値がありません.\n");
+		if(result<0){
+			j=0;
 		}else{
 			start=top(result);
 			end=back(result);
@@ -908,6 +944,10 @@ void save_dat(),out_txt(),data_input(),show_cate();
 		}
 
 
+		if(j==0){
+			printf("※ 該当データは存在しません.\n");
+			return 0;
+		}
 
 		//続行確認
 		printf("◆ 続けて編集,削除,収支の出力を行いますか. (編集-->1 削除-->2 収支-->3 行わない-->4 )\n");
@@ -943,7 +983,7 @@ void save_dat(),out_txt(),data_input(),show_cate();
 						break;
 					}
 					move(address[num],1);
-					num=search(0.0);			//back,searchを使用
+					num=search(0,0);			//back,searchを使用
 					move(num,0);						//moveを使用
 					data[num]=temp;		
 
@@ -1023,6 +1063,7 @@ int leap(int year){
 /******************************************************************/
 	int edit_account(){
 		int i,s,t,mode,num;
+		char pass1[20],pass2[20];
 
 		printf("\n● このアカウントの情報\n");
 		for(i=0;i<user_sum;i++){
@@ -1036,7 +1077,7 @@ int leap(int year){
 		}
 		printf("\n");
 
-		printf("◆ 編集-->1 削除-->2 中止->3\n");
+		printf("◆ 編集-->1 削除-->2 中止->他\n");
 		mode=check(3);
 
 		if(mode==1){
@@ -1053,9 +1094,26 @@ int leap(int year){
 					sprintf(login_user,"%s",account[login_num].user);
 				}
 				else if(mode==2){
-					printf("\n◆ 書き換え後のパスワードを入力してください\n");
-					printf("　 input : ");
-					scanf("%s",account[login_num].pass);
+					while(1){
+						printf("\n◆ 書き換え後のパスワードを入力してください\n");
+						printf("　 input : ");
+						scanf("%s",pass1);
+
+						printf("◆ 確認のため再入力してください.\n");
+
+						while(1){
+							printf("   input : ");
+							scanf("%s",pass2);
+							printf("\n");
+
+							if(char_check(pass1,pass2)==0)break;
+
+							printf("※ 英数字以外の文字が含まれています,パスワードを再入力してください.\n");
+						}
+						if(strcmp(pass1,pass2)==0)break;
+						printf("※ パスワードが一致していません、再入力してください.\n\n");
+					}
+					sprintf(account[login_num].pass,"%s",pass1);
 					printf("\n★ パスワードを%sに変更しました.\n",account[login_num].pass);
 					sprintf(login_pass,"%s",account[login_num].pass);
 				}
