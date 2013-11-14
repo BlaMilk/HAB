@@ -112,7 +112,7 @@ void save_dat(),out_txt(),data_input(),show_cate();
 					while(1){
 						if(Input(1)==-1)break;
 						else{
-							num=search(0,data_sum);;			//back,searchを使用
+							num=search(0,data_sum);			//back,searchを使用
 							move(num,0);						//moveを使用
 							data[num]=temp;		
 						}
@@ -807,19 +807,21 @@ void save_dat(),out_txt(),data_input(),show_cate();
 //													データ検索
 /*************************************************************************************/
 
-	int search(int a,int b){
-		int i,num;
+	int search(int top,int back){
+		int i=(top+back)/2;
+		int j=datecmp(data[i].year,data[i].month,data[i].day,temp.year,temp.month,temp.day);
 
-/////////////////該当より小さいままみつからないと負の数返す
+		if(back-top>1){
+			if(j>0)back=i;
+			else if(j<0)top=i;
+			else if(j==0)return i;
 
-		if(data_sum==0)return -1;			//データ０だと負の数返す
-		for(i=0;i<data_sum;i++){
-			num=datecmp(data[i].year,data[i].month,data[i].day,temp.year,temp.month,temp.day);
-			if(num==0)break;
-			if(num==1)return -(i+1);		//通り過ぎたら負の数返す
+			return search(top,back);
 		}
-		printf("num=%d",num);
-		return i;
+		else{
+		if(j!=0)return -(1+1);
+		return top;
+		}
 	}
 
 
